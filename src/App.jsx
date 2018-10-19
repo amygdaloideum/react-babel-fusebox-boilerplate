@@ -1,10 +1,28 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { Route, Switch } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
+import 'promise-polyfill/src/polyfill';
+import 'whatwg-fetch';
+import './styles/main.sass';
 
-export default class App extends React.Component {
-  constructor(props){
-    super(props);
-  }
+import { store } from './store';
+import MethodsContainer from './containers/methods-container';
+import ErrorModal from './components/error-modal';
+
+export default class App extends React.PureComponent {
   render() {
-    return <div>Hello World</div>;
+    return (
+      <Provider store={store}>
+        <div>
+          <BrowserRouter>
+            <Switch location={location}>
+              <Route exact path="/" component={MethodsContainer} />
+            </Switch>
+          </BrowserRouter>
+          <ErrorModal />
+        </div>
+      </Provider>
+    );
   }
 }

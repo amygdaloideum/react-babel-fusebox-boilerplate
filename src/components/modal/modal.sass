@@ -1,0 +1,42 @@
+.gloot-modal-overlay
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(0, 0, 0, .75)
+  z-index: 1050
+  display: flex
+  justify-content: center
+  align-items: center
+
+.gloot-modal
+  max-width: 600px
+  min-width: 500px
+  min-height: 100px
+  max-height: 80vh
+  background: #fff
+  overflow: auto
+  outline: none
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16)
+  background: white
+  color: black
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+
+.gloot-modal-topbar
+  padding: 1rem 2em
+  flex-shrink: 0;
+
+.gloot-modal-content
+  padding: 2em 2em
+  flex-grow: 1;
+  overflow: auto;
+  word-wrap: break-word;
+  
+.gloot-modal-buttonset
+  padding: 0.5rem 2rem
+  flex-shrink: 0;
+  display: flex
+  justify-content: flex-end
