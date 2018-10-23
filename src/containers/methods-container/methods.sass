@@ -1,0 +1,42 @@
+@import '../../styles/_vars.sass' 
+  
+.methods-container
+  label
+    font-size: 1.2rem
+    color: grey
+
+.payment-method
+  transition: all 2.5s $smooth
+  background: #13131D
+  padding: 1rem
+  border-radius: .3rem
+  border: 1px solid grey
+  margin-top: 1rem
+  cursor: pointer
+  position: relative
+  z-index: 1
+  overflow: hidden
+
+  i
+    color: $main
+    margin-right: .5rem
+
+  &:hover
+    letter-spacing: .3rem
+    border-color: $main
+
+.diagonal:after
+  content: ""
+  position: absolute
+  top: 0
+  left: 0
+  width: 500%
+  height: 1000%
+  background: #29f882
+  z-index: -1
+  transform-origin: 0% 0%
+  transform: translateY(10%) translateX(20%) rotate(-45deg)
+  transition: transform .3s
+
+.diagonal:hover::after
+  transform: translateY(10%) translateX(-20%) rotate(-45deg)

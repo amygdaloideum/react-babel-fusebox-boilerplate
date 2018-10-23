@@ -1,23 +1,13 @@
-import queryString from 'query-string';
+
 import ActionCreator from '../action-creator';
+import queryParams from '../../utils/query-params';
 
 export const ActionCreators = {
   setLoading: new ActionCreator('SET_LOADING'),
 };
 
-const queryParams = queryString.parse(location.search)
-
 export const initialState = {
-  userId: queryParams.userid,
-  merchantId: queryParams.merchantid,
-  amount: queryParams.amount,
-  sessionId: queryParams.sessionid,
-  locale: queryParams.locale,
-  showConfirmation: queryParams.showconfirmation,
-  redirectTarget: queryParams.redirecttarget,
-  platform: queryParams.platform,
-  email: queryParams.email,
-  txType: queryParams.txtype,
+  queryParams, // this is 'immutable', only here for convenience
 };
 
 export default function reducer(state = initialState, action) {

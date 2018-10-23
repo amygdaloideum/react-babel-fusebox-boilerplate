@@ -47,7 +47,7 @@ class ErrorModal extends React.Component {
                     </tr>
                   </tbody>
                 </table>
-                {i !== errors.length -1 && <hr />}
+                {i !== errors.length -1 && <div className="divider" />}
               </div>
             ))}
         </div>

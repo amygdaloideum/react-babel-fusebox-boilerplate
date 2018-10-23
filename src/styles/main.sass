@@ -1,5 +1,34 @@
 @import '~minireset.css/minireset.sass';
 @import './_fonts.sass';
+@import './_vars.sass';
+@import './animated-background.sass';
 
-html, body
-  font-family: 'Stratum', 'verdana';
+html, body, #app-container
+  font-family: 'Stratum', 'verdana'
+  height: 100%
+  background: linear-gradient(to right bottom, #34344f, #2c2c44, #252538, #1d1d2d, #161623);
+  overflow: hidden
+  position: relative
+
+h1
+  font-size: 2rem
+
+.main-container
+  position: absolute
+  left: 0
+  right: 0
+  border-radius: .3rem
+  color: white
+  margin-top: 4rem
+  max-width: 500px
+  margin-right: auto
+  margin-left: auto
+  padding: 3rem
+  background: $dark-canvas
+
+.divider
+    width: 100%
+    height: 2px
+    background-image: linear-gradient(to right, rgba(0,0,0,0), #34344f, rgba(0,0,0,0))
+    margin-top: 1.5rem
+    margin-bottom: 1.5rem

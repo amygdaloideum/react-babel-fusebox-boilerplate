@@ -8,21 +8,29 @@ import './styles/main.sass';
 
 import { store } from './store';
 import MethodsContainer from './containers/methods-container';
+import MethodContainer from './containers/method-container';
+import Header from './containers/header-container';
 import ErrorModal from './components/error-modal';
 
 export default class App extends React.PureComponent {
   render() {
     return (
-      <Provider store={store}>
-        <div>
-          <BrowserRouter>
-            <Switch location={location}>
-              <Route exact path="/" component={MethodsContainer} />
-            </Switch>
-          </BrowserRouter>
-          <ErrorModal />
-        </div>
-      </Provider>
+      <div>
+        <div id="stars" />
+        <div id="stars2" />
+        <Provider store={store}>
+          <div className="main-container">
+            <Header />
+            <BrowserRouter>
+              <Switch location={location}>
+                <Route exact path="/" component={MethodsContainer} />
+                <Route exact path="/method/:txType" component={MethodContainer} />
+              </Switch>
+            </BrowserRouter>
+            <ErrorModal />
+          </div>
+        </Provider>
+      </div>
     );
   }
 }

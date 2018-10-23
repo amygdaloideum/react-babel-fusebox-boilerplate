@@ -3,11 +3,13 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import appReducer from './app/reducer';
 import networkReducer from './network/reducer';
 import modalReducer from './modal/reducer';
+import paymentReducer from './payment/reducer';
 
 const rootReducer = combineReducers({
   app: appReducer,
   network: networkReducer,
   modal: modalReducer,
+  payment: paymentReducer,
 });
 
 // rehydrating state on app start: implement here...
