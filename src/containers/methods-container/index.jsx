@@ -23,7 +23,7 @@ const providerToIconMap = {
 class MethodsContainer extends React.Component {
   async componentDidMount() {
     const { setMethods, methods } = this.props;
-    if (!methods) {
+    if (!methods || !methods.length) {
       const resp = await getPaymentMethods();
       setMethods(resp.data[0].methods);
     }

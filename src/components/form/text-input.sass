@@ -1,0 +1,72 @@
+@import $appRoot/src/styles/_vars.sass
+
+$border-radius: .3rem
+$border-color: lighten($dark-canvas, 20%)
+$background-color: lighten($dark-canvas, 2%)
+
+.gloot-input
+  margin: 0.5rem 0 0.5rem 0
+  width: 100%
+  position: relative
+  &:not(:first-child)
+    margin-top: 1rem
+
+  .label-container
+    display: flex
+    justify-content: space-between
+    text-transform: uppercase
+    margin-bottom: .3rem
+    font-size: 0.8rem
+    label
+      color: darken(white, 30%)
+    span
+      color: $danger
+
+  .input-container
+    display: flex
+    align-items: stretch
+    border: 1px solid $border-color
+    border-radius: $border-radius
+    z-index: 10
+    &.is-invalid
+      border: 1px solid $danger
+      .icon-container
+        color: $danger
+    &.is-valid
+      border: 1px solid $main
+      .icon-container
+        color: $main
+    &.is-disabled
+      input
+        color: grey
+        background: darken(grey, 7%)
+      .icon-container
+        background: darken(grey, 7%)
+        color: grey
+        cursor: default
+
+  .icon-container
+    background-color: Transparent
+    display: flex
+    flex: 1;
+    align-items: center
+    padding-right: .7rem
+    cursor: text
+    i 
+      font-size: 1.1rem
+    
+  input,
+    background-color: $background-color
+    border-radius: $border-radius
+    width: 100%
+    height: 100%
+    font-size: 1rem
+    height: 15px
+    color: white
+    border: 0
+    outline: 0
+    padding: 1.1rem .5rem 1.1rem .5rem
+    font-family: 'Stratum'
+    &::placeholder
+      text-transform: uppercase
+      font-size: 0.8rem
