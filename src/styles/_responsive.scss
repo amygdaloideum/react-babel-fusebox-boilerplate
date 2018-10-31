@@ -1,0 +1,45 @@
+$breakpoints-gt: (
+  'small-phone'  : ( min-width:  320px ),
+  'large-phone' : ( min-width:  450px ),
+  'lg'  : ( min-width: 1280px ),
+  'xl'  : ( min-width: 1920px )
+);
+
+$breakpoints-lt: (
+  'small-phone'  : ( max-width:  320px ),
+  'large-phone' : ( max-width:  450px ),
+  'lg'  : ( max-width: 1280px ),
+  'xl'  : ( max-width: 1920px )
+);
+ 
+@mixin breakpoint-gt($name) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints-gt, $name) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints-gt, $name))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint-gt}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin breakpoint-lt($name) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints-lt, $name) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints-lt, $name))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint-lt}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}

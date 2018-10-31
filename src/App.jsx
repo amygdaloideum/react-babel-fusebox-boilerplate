@@ -19,15 +19,24 @@ export default class App extends React.PureComponent {
         <div id="stars" />
         <div id="stars2" />
         <Provider store={store}>
-          <div className="main-container">
-            <Header />
-            <BrowserRouter>
-              <Switch location={location}>
-                <Route exact path="/" component={MethodsContainer} />
-                <Route exact path="/method/:txType" component={MethodContainer} />
-              </Switch>
-            </BrowserRouter>
-            <ErrorModal />
+          <div className="content-wrapper">
+            <div className="main-container">
+              <div className="content">
+                <Header />
+                <BrowserRouter>
+                  <Switch location={location}>
+                    <Route exact path="/" component={MethodsContainer} />
+                    <Route exact path="/method/:txType" component={MethodContainer} />
+                  </Switch>
+                </BrowserRouter>
+              </div>
+              <div className="mobile-footer">
+                <a>ABOUT</a>
+                <a>PRIVACY</a>
+                <a>HELP</a>
+              </div>
+              <ErrorModal />
+            </div>
           </div>
         </Provider>
       </div>

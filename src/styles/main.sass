@@ -12,20 +12,52 @@ html, body, #app-container
   position: relative
 
 h1
-  font-size: 2rem
+  font-size: 1.5rem
+
+.content-wrapper
+  height: 100vh
+  overflow: scroll
 
 .main-container
   position: absolute
   left: 0
   right: 0
-  border-radius: .3rem
+  overflow-y: scroll
+  //border-radius: .3rem
   color: white
-  margin-top: 4rem
-  max-width: 500px
-  margin-right: auto
-  margin-left: auto
-  padding: $margin-4 $margin-4 $margin-4 $margin-4
-  background: $dark-canvas
+  height: 100vh
+  //margin-top: 4rem
+  //max-width: 500px
+  //margin-right: auto
+  //margin-left: auto
+  //padding: $margin-4 $margin-4 $margin-4 $margin-4
+  //background: $dark-canvas
+  background-image: linear-gradient(to right top, #14141f, #161722, #191926, #1b1c29, #1e1e2d);
+  .content
+    overflow-y: scroll
+    padding: $margin-3
+    min-height: calc(100% - 58px);
+  .mobile-footer
+    text-align: center
+    background: #222
+    padding: 1.2rem
+    a
+      color: #aaa
+      text-decoration: underline
+      padding-left: 1rem
+
+@include breakpoint-gt(large-phone)
+  .main-container
+    border-radius: .3rem
+    height: auto
+    margin-top: 4rem
+    max-width: 480px
+    max-height: 800px
+    margin-right: auto
+    margin-left: auto
+    padding: $margin-3
+  .mobile-footer
+    display: none
 
 .divider
     width: 100%
