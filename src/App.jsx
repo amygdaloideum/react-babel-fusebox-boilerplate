@@ -17,8 +17,10 @@ export default class App extends React.PureComponent {
   render() {
     return (
       <div>
-        <div id="stars" />
-        <div id="stars2" />
+        <div className="background-wrapper">
+          <div id="stars" />
+          <div id="stars2" />
+        </div>
         <Provider store={store}>
           <div className="content-wrapper">
             <div className="main-container">

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import './method.sass';
 import { connect } from 'react-redux';
-import { history } from '../../store'
 import { Form, Field } from 'react-final-form';
-import { getPaymentMethods, test } from '../../services/paymentiq-service';
+import { getPaymentMethods } from '../../services/paymentiq-service';
 import { ActionCreators as paymentActionCreators } from '../../store/payment/reducer';
 import TextInput from '../../components/final-form-wrappers/text-input';
 import Button from '../../components/form/button';
@@ -13,7 +12,7 @@ import containerTypes from '../../utils/container-types';
 import formRedirect from '../../utils/form-redirect';
 import Spinner from '../../components/spinner';
 import { encryptFormData } from '../../utils/encrypt';
-import { getItem, setItem} from '../../utils/storage';
+import { getItem, setItem } from '../../utils/storage';
 
 const mapStateToProps = state => ({
   method: state.payment.selectedMethod,
@@ -46,7 +45,10 @@ class MethodContainer extends React.Component {
 
   getInitialValues = method => {
     const initialValues = {};
-    method && method.txTypeInput.inputs.map(input => (initialValues[input.name] = input.val));
+    method &&
+      method.txTypeInput.inputs
+        .filter(input => input.key !== 'amount')
+        .map(input => (initialValues[input.name] = input.val));
     return initialValues;
   };
 
@@ -88,7 +90,7 @@ class MethodContainer extends React.Component {
       return this.handleErrors(response.errors);
     }
     //Process was sucessful
-    if(response.messages) {
+    if (response.messages) {
       // save messages in local storage for use when
       setItem(response.messages);
     }
@@ -114,34 +116,34 @@ class MethodContainer extends React.Component {
           </div>
         )}
         {method && (
-            <div className={`${loading ? 'display-none' : ''}`}>
-              <label>{method.providerType}</label>
-              <div>
-                <Form
-                  initialValues={initialValues}
-                  onSubmit={this.onSubmit}
-                  render={({ handleSubmit, pristine, invalid }) => (
-                    <form onSubmit={handleSubmit}>
-                      <div className="method-form-container">
-                        {method.txTypeInput.inputs.map(input => (
-                          <div
-                            key={input.name}
-                            className={`${input.type === 'HIDDEN' ? 'display-none' : 'hihi'}`}
-                          >
-                            <Field label={input.name} name={input.name} component={TextInput} />
-                          </div>
-                        ))}
-                      </div>
-
-                      <Button type="submit" disabled={pristine} className="fl-end mt2">
-                        next
-                      </Button>
-                    </form>
-                  )}
-                />
-              </div>
+          <div className={`${loading ? 'display-none' : ''}`}>
+            <label>{method.providerType}</label>
+            <div>
+              <Form
+                initialValues={initialValues}
+                onSubmit={this.onSubmit}
+                render={({ handleSubmit, pristine, invalid }) => (
+                  <form onSubmit={handleSubmit}>
+                    <div className="method-form-container">
+                      {/* Amount is fixed and should not be changeable */}
+                      {method.txTypeInput.inputs.filter(i => i.key !== 'amount').map(input => (
+                        <div
+                          key={input.name}
+                          className={`${input.type === 'HIDDEN' ? 'display-none' : ''}`}
+                        >
+                          <Field label={input.name} name={input.name} component={TextInput} />
+                        </div>
+                      ))}
+                    </div>
+                    <Button type="submit" disabled={pristine} className="fl-end mt2">
+                      next
+                    </Button>
+                  </form>
+                )}
+              />
             </div>
-          )}
+          </div>
+        )}
         {loading && (
           <div className="method-loading-container">
             <h2>please stand by</h2>
@@ -149,7 +151,6 @@ class MethodContainer extends React.Component {
             <Spinner />
           </div>
         )}
-        <button onClick={this.encryptTest}>encrypt</button>
       </section>
     );
   }

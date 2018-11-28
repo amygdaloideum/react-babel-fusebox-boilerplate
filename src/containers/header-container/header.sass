@@ -1,12 +1,25 @@
 @import '../../styles/_vars.sass' 
+@import $appRoot/src/styles/_responsive.scss
 
 .payments-header
-  height: 64px
+  .title-container
+    display: flex
+    flex-direction: column
+    h1 
+      font-size: 2rem
   img
     width: 4rem
-    float: left
+    height: 4rem
     margin-right: 1rem
+  .summary-table
+    text-transform: uppercase
+    color: 	#FFD700
+    font-size: 1.3rem
+    td:first-child
+      padding-right: $margin-1
 .tx-type
   text-transform: uppercase
   color: $main
 
+@include breakpoint-gt(small-phone)
+  

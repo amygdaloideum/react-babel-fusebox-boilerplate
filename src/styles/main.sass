@@ -10,6 +10,15 @@ html, body, #app-container
   background: linear-gradient(to right bottom, #34344f, #2c2c44, #252538, #1d1d2d, #161623);
   overflow: hidden
   position: relative
+  overflow-y: auto
+
+.background-wrapper
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  overflow: hidden
 
 h1
   font-size: 1.5rem
@@ -53,7 +62,6 @@ h1
     height: auto
     margin-top: 4rem
     max-width: 480px
-    height: 600px
     margin-right: auto
     margin-left: auto
     padding: $margin-3
