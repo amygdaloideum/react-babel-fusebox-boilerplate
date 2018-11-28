@@ -4,18 +4,23 @@
   "description": "Super basic boilerplate to get started with react",
   "main": "index.js",
   "scripts": {
+    "start": "node fuse build && node prod-server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node fuse dev",
-    "build": "node fuse build"
+    "build": "node fuse build",
+    "deploy": "npm run build && node fuse setProd && gcloud app deploy prod.yaml",
+    "deploy-dev": "npm run build && node fuse setDev && gcloud app deploy dev.yaml"
   },
   "author": "Daniel Bornstrand",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.3.2",
     "dotenv": "^6.1.0",
     "final-form": "^4.10.0",
     "fuse-box": "^3.5.0",
     "history": "^4.7.2",
     "http-proxy-middleware": "^0.19.0",
+    "jsencrypt": "^3.0.0-rc.1",
     "minireset.css": "0.0.3",
     "node-sass": "^4.9.4",
     "promise-polyfill": "^8.1.0",
@@ -28,7 +33,9 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
+    "shelljs": "^0.8.3",
     "typescript": "^3.1.2",
+    "uglify-es": "^3.3.9",
     "uglify-js": "^3.1.9",
     "uuid": "^3.3.2",
     "whatwg-fetch": "^3.0.0"

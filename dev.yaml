@@ -1,0 +1,6 @@
+env: flex
+runtime: custom
+env_variables:
+  PAYMENTIQ_API_URL: "https://test-api.paymentiq.io/paymentiq/api"
+  SUCCESS_REDIRECT_URL: "http://localhost:3010/success"
+  FAILURE_REDIRECT_URL: "http://localhost:3010/failure"

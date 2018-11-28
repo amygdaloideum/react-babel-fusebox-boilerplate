@@ -12,6 +12,8 @@ const queryParams = {
   platform: search.platform,
   email: search.email,
   txType: search.txtype,
+  txId: search.txId,
+  attributes: search.attributes ? JSON.parse(search.attributes) : {},
 };
 
 export default queryParams;

@@ -16,13 +16,14 @@ h1
 
 .content-wrapper
   height: 100vh
-  overflow: scroll
+  &::-webkit-scrollbar
+    display: none
 
 .main-container
+  //overflow-y: auto
   position: absolute
   left: 0
   right: 0
-  overflow-y: scroll
   //border-radius: .3rem
   color: white
   height: 100vh
@@ -34,8 +35,8 @@ h1
   //background: $dark-canvas
   background-image: linear-gradient(to right top, #14141f, #161722, #191926, #1b1c29, #1e1e2d);
   .content
-    overflow-y: scroll
     padding: $margin-3
+    overflow-y: auto
     min-height: calc(100% - 58px);
   .mobile-footer
     text-align: center
@@ -52,7 +53,7 @@ h1
     height: auto
     margin-top: 4rem
     max-width: 480px
-    max-height: 800px
+    height: 600px
     margin-right: auto
     margin-left: auto
     padding: $margin-3
