@@ -1,6 +1,7 @@
 import * as api from '../utils/api';
 import queryParams from '../utils/query-params';
 
+// https://docs.paymentiq.io/europe/front/general/request
 const defaultParams = {
   sessionId: queryParams.sessionId,
   userId: queryParams.userId,

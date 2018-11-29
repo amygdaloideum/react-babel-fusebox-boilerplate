@@ -13,9 +13,8 @@ export default class Header extends React.Component {
     return (
       <section className="payments-header">
         <div className="title-container">
-          <img src="/assets/img/gloot-icon.svg" />
+          <img src="/assets/img/vault-icon.svg" />
           <div className="flex flex-column">
-            <h1>G-LOOT PAYMENTS</h1>
             <h3 className="tx-type">{glootType || txType}</h3>
           </div>
         </div>
