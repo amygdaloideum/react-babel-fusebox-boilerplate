@@ -5,7 +5,7 @@ const defaultParams = {
   sessionId: queryParams.sessionId,
   userId: queryParams.userId,
   merchantId: queryParams.merchantId,
-  amount: 3.00 //Math.abs(queryParams.attributes.glootAmount.amount),
+  amount: Math.abs(queryParams.attributes.glootAmount.amount),
 }
 
 const redirectUrlOverride = {

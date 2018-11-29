@@ -1,11 +1,8 @@
 import * as React from 'react';
 import './method.sass';
 import { connect } from 'react-redux';
-import { Form, Field } from 'react-final-form';
 import { getPaymentMethods } from '../../services/paymentiq-service';
 import { ActionCreators as paymentActionCreators } from '../../store/payment/reducer';
-import TextInput from '../../components/final-form-wrappers/text-input';
-import Button from '../../components/form/button';
 import { startPaymentProcess } from '../../services/paymentiq-service';
 import queryParams from '../../utils/query-params';
 import containerTypes from '../../utils/container-types';
@@ -13,6 +10,9 @@ import formRedirect from '../../utils/form-redirect';
 import Spinner from '../../components/spinner';
 import { encryptFormData } from '../../utils/encrypt';
 import { getItem, setItem } from '../../utils/storage';
+
+import GeneralForm from './forms/general-form';
+import CreditCardForm from './forms/credit-card-form';
 
 const mapStateToProps = state => ({
   method: state.payment.selectedMethod,
@@ -117,30 +117,15 @@ class MethodContainer extends React.Component {
         )}
         {method && (
           <div className={`${loading ? 'display-none' : ''}`}>
-            <label>{method.providerType}</label>
             <div>
-              <Form
-                initialValues={initialValues}
-                onSubmit={this.onSubmit}
-                render={({ handleSubmit, pristine, invalid }) => (
-                  <form onSubmit={handleSubmit}>
-                    <div className="method-form-container">
-                      {/* Amount is fixed and should not be changeable */}
-                      {method.txTypeInput.inputs.filter(i => i.key !== 'amount').map(input => (
-                        <div
-                          key={input.name}
-                          className={`${input.type === 'HIDDEN' ? 'display-none' : ''}`}
-                        >
-                          <Field label={input.name} name={input.name} component={TextInput} />
-                        </div>
-                      ))}
-                    </div>
-                    <Button type="submit" disabled={pristine} className="fl-end mt2">
-                      next
-                    </Button>
-                  </form>
-                )}
-              />
+              {(() => {
+                switch (method.providerType) {
+                  case 'CREDITCARD':
+                    return <CreditCardForm method={method} onSubmit={this.onSubmit} initialValues={initialValues} />;
+                  default:
+                    return <GeneralForm method={method} onSubmit={this.onSubmit} initialValues={initialValues} />;
+                }
+              })()}
             </div>
           </div>
         )}

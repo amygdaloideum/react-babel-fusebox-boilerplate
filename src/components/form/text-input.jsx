@@ -4,7 +4,16 @@ import './text-input.sass';
 export default class TextInput extends React.PureComponent {
   render() {
     const {
-      value, onChange, className, icon, label, placeholder, valid, invalid, errorMsg, disabled,
+      value,
+      input,
+      className,
+      icon,
+      label,
+      placeholder,
+      valid,
+      invalid,
+      errorMsg,
+      disabled,
     } = this.props;
     let iconClass = icon;
     let statusClass = '';
@@ -20,13 +29,19 @@ export default class TextInput extends React.PureComponent {
     }
     const noop = () => {};
     return (
-      <div className={`${className} gloot-input`}>
+      <div className={`gloot-input ${className || ''} `}>
         <div className="label-container">
           <label>{label}</label>
           <span>{errorMsg}</span>
         </div>
         <div className={`input-container ${statusClass}`}>
-          <input onChange={onChange || noop} type="text" placeholder={placeholder} value={value} disabled={disabled} />
+          <input
+            {...input}
+            type="text"
+            placeholder={placeholder}
+            value={value}
+            disabled={disabled}
+          />
           {(icon || disabled || valid || invalid) && (
             <span className="icon-container">
               <i className={iconClass} />
