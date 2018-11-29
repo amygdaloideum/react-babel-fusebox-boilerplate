@@ -13,7 +13,7 @@
   .summary-table
     text-transform: uppercase
     margin: auto
-    color: 	#FFD700
+    color: #FFD700
     font-size: 1.3rem
     td:first-child
       padding-right: $margin-1
@@ -24,5 +24,9 @@
   font-size: 2rem
   text-align: center
 
-@include breakpoint-gt(small-phone)
+@include breakpoint-gt(large-phone)
+  .payments-header
+    .title-container
+      h3
+        margin-top: 1.5rem
   

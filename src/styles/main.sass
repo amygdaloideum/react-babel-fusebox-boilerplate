@@ -29,21 +29,16 @@ h1
     display: none
 
 .main-container
-  //overflow-y: auto
   position: absolute
   left: 0
   right: 0
-  //border-radius: .3rem
   color: white
   min-height: 100vh
-  //margin-top: 4rem
-  //max-width: 500px
-  //margin-right: auto
-  //margin-left: auto
-  //padding: $margin-4 $margin-4 $margin-4 $margin-4
-  //background: $dark-canvas
-  background-image: linear-gradient(to right top, #14141f, #161722, #191926, #1b1c29, #1e1e2d);
+  background-image: linear-gradient(to right top, #14141f, #161722, #191926, #1b1c29, #1e1e2d)
+  display: flex
+  flex-direction: column
   .content
+    flex: 1
     padding: $margin-3
     overflow-y: auto
     min-height: calc(100% - 58px);
