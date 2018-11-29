@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { getPaymentMethods, test } from '../../services/paymentiq-service';
 import { ActionCreators as paymentActionCreators } from '../../store/payment/reducer';
+import Spinner from '../../components/spinner';
 import './methods.sass';
 
 const mapStateToProps = state => ({
@@ -21,10 +22,16 @@ const providerToIconMap = {
 };
 
 class MethodsContainer extends React.Component {
+  state = {
+    loading: false,
+  }
+
   async componentDidMount() {
     const { setMethods, methods } = this.props;
     if (!methods || !methods.length) {
+      this.setState({ loading: true });
       const resp = await getPaymentMethods();
+      this.setState({ loading: false });
       setMethods(resp.data[0].methods);
     }
   }
@@ -45,6 +52,13 @@ class MethodsContainer extends React.Component {
             <i className={providerToIconMap[method.providerType]} /> {method.providerType}
           </div>
         ))}
+        {this.state.loading && (
+          <div className="method-loading-container mt4">
+            <h2>please stand by</h2>
+            <h3>fetching available payment methods</h3>
+            <Spinner />
+          </div>
+        )}
       </section>
     );
   }
