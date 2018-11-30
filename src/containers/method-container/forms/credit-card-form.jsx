@@ -86,14 +86,12 @@ export default class CreditCardForm extends React.Component {
               <Field
                 label="creditcard number"
                 pattern="[\d| ]{16,22}"
-                placeholder="XXXX XXXX XXXX XXXX"
                 name="number"
                 format={formatCreditCardNumber}
                 component={TextInput}
               />
               <Field
                 label="card holder"
-                placeholder="John Doe"
                 name="name"
                 component={TextInput}
               />
@@ -111,7 +109,6 @@ export default class CreditCardForm extends React.Component {
                 <div>
                   <Field
                     label="cvv"
-                    placeholder="123"
                     name="cvc"
                     component={TextInput}
                     type="text"

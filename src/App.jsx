@@ -34,10 +34,10 @@ export default class App extends React.PureComponent {
                   </Switch>
                 </BrowserRouter>
               </div>
-              <div className="mobile-footer">
-                <a>ABOUT</a>
-                <a>PRIVACY</a>
-                <a>HELP</a>
+              <div className="footer">
+                <a target="_blank" href="https://www.gloot.com/privacy-policy/">PRIVACY</a>
+                <a target="_blank" href="https://www.gloot.com/terms-conditions/">TERMS & CONDITIONS</a>
+                <a target="_blank" href="https://www.gloot.com/contact/">HELP</a>
               </div>
               <ErrorModal />
             </div>

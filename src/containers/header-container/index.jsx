@@ -12,6 +12,11 @@ export default class Header extends React.Component {
     } = queryParams;
     return (
       <section className="payments-header">
+        <div className="powered-by">
+          <span>POWERED BY</span>
+          <img src="/assets/img/gloot-icon.svg" />
+          <span> G-LOOT</span>
+        </div>
         <div className="title-container">
           <img src="/assets/img/vault-icon.svg" />
           <div className="flex flex-column">
