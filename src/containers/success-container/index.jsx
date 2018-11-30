@@ -6,6 +6,10 @@ import queryParams from '../../utils/query-params';
 import { getItem } from '../../utils/storage';
 import './success.sass';
 
+const txStates = {
+  WAITING_APPROVAL: 'WAITING_APPROVAL',
+};
+
 const mapStateToProps = state => ({});
 
 const dispatchToProps = {};
@@ -16,19 +20,30 @@ class SuccessContainer extends React.Component {
   async componentDidMount() {
     //getTxStatus({ txId: queryParams.txId });
     // get messages from localstorage
-    const messages = getItem();
-    this.setState({ messages: messages || [] });
+    const messages = getItem('messages');
+    const txState = getItem('txState');
+    this.setState({ txState, messages: messages || [] });
   }
 
   render() {
-    const { messages } = this.state;
+    const { messages, txState } = this.state;
     return (
       <section className="success-container">
         <div className="divider" />
-        <div className="flex flex-column items-center justify-center success-sign">
-          <i className="fa fa-check c-main" />
-          <h1 className="c-main">SUCCESS</h1>
-        </div>
+        {txState === txStates.WAITING_APPROVAL ? (
+          <div className="flex flex-column items-center justify-center withdrawal-sign">
+            <h1 className="">
+              <span className="mr2">REQUEST SENT</span>
+              <i className="fa fa-check c-main" />
+            </h1>
+            <p>The G-loot Compliance Team will handle your withdrawal as soon as possilble.</p>
+          </div>
+        ) : (
+          <div className="flex flex-column items-center justify-center success-sign">
+            <i className="fa fa-check c-main" />
+            <h1 className="c-main">SUCCESS</h1>
+          </div>
+        )}
         <table className="message-list mt3">
           <tbody>
             {messages &&

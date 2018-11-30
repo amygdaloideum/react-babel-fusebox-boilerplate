@@ -92,7 +92,8 @@ class MethodContainer extends React.Component {
     //Process was sucessful
     if (response.messages) {
       // save messages in local storage for use when
-      setItem(response.messages);
+      setItem('messages', response.messages);
+      setItem('txState', response.txState);
     }
     if (response.redirectOutput) {
       this.handleRedirect(response.redirectOutput);

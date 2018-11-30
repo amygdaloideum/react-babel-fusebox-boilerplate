@@ -1,10 +1,9 @@
 const storage = window.localStorage;
-const key = 'messages';
 
-export function setItem(item) {
+export function setItem(key, item) {
   storage.setItem(key, JSON.stringify(item));
 }
 
-export function getItem() {
+export function getItem(key) {
   return JSON.parse(storage.getItem(key));
 }
