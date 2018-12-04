@@ -14,6 +14,7 @@ const queryParams = {
   txType: search.txtype,
   txId: search.txId,
   attributes: search.attributes ? JSON.parse(search.attributes) : {},
+  redirectUrl: search.redirectUrl,
 };
 
 export default queryParams;

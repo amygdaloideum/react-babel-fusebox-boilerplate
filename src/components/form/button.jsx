@@ -3,7 +3,7 @@ import './button.sass';
 
 export default class TextInput extends React.PureComponent {
   render() {
-    const { className, children } = this.props;
-    return <button className={`${className ? className : ''} gloot-button`}>{children}</button>;
+    const { className, children, onClick } = this.props;
+    return <button onClick={onClick} className={`${className ? className : ''} gloot-button`}>{children}</button>;
   }
 }

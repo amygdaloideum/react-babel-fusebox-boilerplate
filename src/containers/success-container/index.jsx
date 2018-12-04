@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getTxStatus } from '../../services/paymentiq-service';
 import { ActionCreators as paymentActionCreators } from '../../store/payment/reducer';
 import queryParams from '../../utils/query-params';
+import Button from '../../components/form/button';
 import { getItem } from '../../utils/storage';
 import './success.sass';
 
@@ -23,6 +24,36 @@ class SuccessContainer extends React.Component {
     const messages = getItem('messages');
     const txState = getItem('txState');
     this.setState({ txState, messages: messages || [] });
+  }
+
+  extractHostname = url => {
+    var hostname;
+    if (url.indexOf('//') > -1) {
+      hostname = url.split('/')[2];
+    } else {
+      hostname = url.split('/')[0];
+    }
+    hostname = hostname.split(':')[0];
+    hostname = hostname.split('?')[0];
+    return hostname;
+  };
+
+  extractRootDomain = url => {
+    var domain = this.extractHostname(url),
+      splitArr = domain.split('.'),
+      arrLen = splitArr.length;
+
+    if (arrLen > 2) {
+      domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
+      if (splitArr[arrLen - 2].length == 2 && splitArr[arrLen - 1].length == 2) {
+        domain = splitArr[arrLen - 3] + '.' + domain;
+      }
+    }
+    return domain;
+  };
+
+  navigateBack = () => {
+    window.location.href = queryParams.redirectUrl;
   }
 
   render() {
@@ -55,6 +86,15 @@ class SuccessContainer extends React.Component {
               ))}
           </tbody>
         </table>
+        {queryParams.redirectUrl && (
+          <div className="flex justify-center mt3">
+            <Button onClick={this.navigateBack}>
+              {' '}
+              <i className="fa fa-home mr1" />
+              {`Return to ${this.extractRootDomain(queryParams.redirectUrl)}`}
+            </Button>
+          </div>
+        )}
       </section>
     );
   }

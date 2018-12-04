@@ -18,7 +18,7 @@ export default class Header extends React.Component {
           <span> G-LOOT</span>
         </div>
         <div className="title-container">
-          <img src="/assets/img/vault-icon.svg" />
+          <img src="/assets/img/gll-logo.png" />
           <div className="flex flex-column">
             <h3 className="tx-type">{glootType || txType}</h3>
           </div>
